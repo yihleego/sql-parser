@@ -11,7 +11,7 @@ $ cd sql-parser
 
 ## Usage
 
-![Sql Parser](https://github.com/yihleego/sql-parser/blob/master/images/sp.gif)
+<img src="https://github.com/yihleego/sql-parser/blob/master/images/sp.gif" alt="Sql Parser"/>
 
 ## Contact
 
