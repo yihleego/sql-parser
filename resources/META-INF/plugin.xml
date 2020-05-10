@@ -1,0 +1,79 @@
+<idea-plugin>
+    <id>io.leego.sql.parser.SQLParser</id>
+    <name>SQL Parser</name>
+    <version>0.0.1</version>
+    <vendor email="yihleego@hotmail.com" url="https://github.com/yihleego">Yihleego</vendor>
+
+    <description><![CDATA[
+      SQL-Parser can easily parse SQL.<br>
+      For example: <br>
+      <ul>
+      <li>
+      2020-01-01 00:00:00.000 DEBUG 40148 --- [nio-8002-exec-2] c.h.b.e.o.m.Mapper.query  : ==> Preparing: select * from foo where name = ? and type = ? and time = ?
+      <br>
+      2020-01-01 00:00:00.000 DEBUG 40148 --- [nio-8002-exec-2] c.h.b.e.o.m.Mapper.query  : ==> Parameters: bar(String), 8(Long), 2020-01-01 00:00:00(String)
+      </li>
+      <br>
+      <li>
+      Preparing: select * from foo where name = ? and type = ? and time = ?
+      <br>
+      Parameters: bar(String), 8(Long), 2020-01-01 00:00:00(String)
+      </li>
+      <br>
+      <li>
+      select * from foo where name = ? and type = ? and time = ?
+      <br>
+      bar(String), 8(Long), 2020-01-01 00:00:00(String)
+      </li>
+      <br>
+      <li>
+      select * from foo where name = ? and type = ? and time = ?
+      <br>
+      bar(String),8(Long),2020-01-01 00:00:00(String)
+      </li>
+      <br>
+      <li>
+      select * from foo where name = ? and type = ? and time = ?
+      <br>
+      bar,8,2020-01-01 00:00:00
+      </li>
+      </ul>
+      Output: <br>
+      <ul>
+      <li>
+      select * from foo where name = 'bar' and type = '8' and time = '2020-01-01 00:00:00'
+      </li>
+      </ul>
+    ]]></description>
+
+    <!--<change-notes><![CDATA[
+        Add change notes here.<br>
+        <em>most HTML tags may be used</em>
+      ]]>
+    </change-notes>-->
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="173.0"/>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <toolWindow canCloseContents="true" anchor="bottom" id="SQL Parser"
+                    factoryClass="io.leego.sql.parser.ConsoleToolWindowFactory">
+        </toolWindow>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="SQLParseAction" class="io.leego.sql.parser.SQLParseAction" text="Parse SQL">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <add-to-group group-id="BasicEditorPopupMenu" anchor="last"/>
+            <add-to-group group-id="ConsoleEditorPopupMenu" anchor="last"/>
+            <add-to-group group-id="EditorTabPopupMenu" anchor="last"/>
+        </action>
+    </actions>
+
+</idea-plugin>
